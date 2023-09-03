@@ -1,0 +1,463 @@
+/*GENERALES*/
+
+*{
+
+	margin: 0px;
+	padding: 0px;
+	font-family: sans-serif,Helvetica,Arial;
+}
+
+body {
+  background: url(../image/fondo.png) blue;
+}
+
+a{
+  color: #01b1ea;
+ }
+
+ a:visited{
+ 	 color: #01b1ea;
+ }
+ a:hover{
+ 	color: #555;
+ }
+/*HEADER*/
+
+#header{
+	width: 100%;
+	height: 145px;	
+	background-color: #F0F0F0;
+}
+
+/*conteiner*/
+
+#container{
+	width: 80%;
+	margin: 0 auto;
+	box-shadow: 0px 0px 10px gray;
+	background:white ;
+
+
+}
+.thumb{
+	width: 100px;
+}
+
+#logo{
+	padding: 20px;
+	margin-left: 20px;
+}
+
+#logo a {
+	float: left;
+	font-size: 40px;
+	letter-spacing: 4px;
+	font-family: 'Open Sans',Helvetica,Arial;
+	text-transform: uppercase;
+	color: #01b1ea;
+	font-weight: bold;
+	text-decoration: none;
+	margin-top: 18px;
+	margin-left: 25px;
+	text-shadow: 0px 2px 1px #222222;
+	transition: all 300ms;
+
+
+}
+
+#logo a:hover{
+	text-shadow: 0px 2px 1px #222222, 0px 0px 4px #01b1ea;
+}
+
+
+
+
+
+#logo img{
+
+	height:  100px;
+	float: left;
+}
+
+/*MENU*/
+
+
+#menu{
+    clear: both;
+	background : #222;
+	color: white;
+	height:  55px;
+	border-bottom:  4px solid #01b1ea;
+
+}
+
+#menu a {
+	display: block;
+	color: white;
+	text-decoration: none;
+	
+	padding-left:12px;
+	padding-right: 12px; 
+	transition: all 300ms;
+}
+#menu a:first-child{
+	border-left: 1px solid #363636;
+
+}
+
+#menu a:hover{
+	background:#01b1ea;
+}
+
+#menu li{
+	list-style: none;
+	text-decoration: none;
+	margin:0px auto;
+	margin-left: 25px;
+}
+
+#menu ul li{
+	line-height: 55px;
+	float: left;
+	border-right: 1px solid #363636;
+
+}
+
+/*content*/
+
+#content{
+	margin: 0px auto;
+	overflow: hidden;
+	background: white;
+
+
+}
+
+/*BARAR LAETRAL*/
+
+#lateral{
+	width: 22%;
+	min-height: 500px;
+	float: left;
+	margin-top: 20px;
+	margin-left: 10px;
+
+}
+#lateral h3{
+
+	display: block;
+	color: #222;
+	width: 100%;
+	text-align: center;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	margin-bottom: 15px;
+	font-size: 16px;
+	font-weight: bold;
+	background:#E1E1E1;
+	border-bottom: 2px solid #01b1ea;
+}
+
+#lateral ul {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+#lateral ul li {
+
+	list-style: square;
+	margin-left: 20px;
+    margin-top: 5px;
+	margin-bottom: 5px;
+
+
+}
+
+
+
+
+#lateral .block_aside {
+
+	direction: block;
+	width: 90%;
+	margin:5px auto;
+	padding:10px;
+	
+
+}
+
+/*form*/
+
+.form_midle{
+	width: 50%;
+}
+
+label{
+
+	display: block;
+	margin-top: 10px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+select ,textarea{
+	width: 100%;
+	border:1px solid #C9C9C9;
+	box-shadow: 0px 0px 2px #ccc inset;
+	background: white;
+	padding: 2px;
+	color: gray;
+	transition: all 300 ms;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+select {
+
+	border:1px solid #1579b5;
+	color: black;
+
+}
+
+input[type="button"],
+input[type="submit"],
+button,.button {
+
+	display: block;
+	border-radius: 2px;
+	width: auto;
+	padding: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+	color:white;
+	background:#2969cd;
+	border: 1px #11608E;
+	cursor: pointer;
+}
+.button{
+	background:green;
+	color: white !important;
+	text-decoration:none;
+
+}
+.button-small{
+
+  width: 120px;
+  text-align: center;
+  margin-bottom: 20px;
+
+
+}
+.button-gestion{
+	margin-top: 5px;
+}
+
+.button-warning{
+	background-color: red;
+}
+
+
+label,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+select,
+input[type="button"],
+input[type="submit"],
+button {
+	display: block;
+	width: 95%;
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+
+
+
+/*CENTRAL*/
+
+#central {
+
+	width: 72%;
+	min-height: 500px;
+	float: right;
+	border-left: 1 px solid #ccc;
+	box-shadow: -5px 1px 5px #ddd;
+	padding: 25px;
+}
+
+#central h1 {
+	font-size: 25px;
+	font-weight: normal;
+	letter-spacing: 1px;
+
+
+	text-align: center;
+	border-bottom: 1px solid #ccc;
+	
+	margin-bottom: 20px;
+	padding: 20px;
+	padding-top: 0px;
+
+
+}
+
+.product{
+	width: 30%;
+	
+	float: left;
+	margin-left: 10px;
+	margin-right: 10px;
+	text-align: center;
+	margin-top: 25px;
+
+
+}
+
+
+.product img{
+	height: 100px;
+	margin-bottom: 10px;
+}
+
+.product h2 {
+	font-size: 18px;
+	margin-bottom: 10px;
+
+}
+
+.product p {
+	font-weight: bold;
+	color: gray;
+	margin-bottom: 10px;
+
+}
+
+#detail-product{
+	width: 100%;
+}
+
+#detail-product .image{
+
+	display: block;
+	width: 47%;
+	float: left;
+}
+
+#detail-product img{
+	display: block;
+	width: 100%;
+	float: left;
+}
+
+
+#detail-product .data{
+	width: 50%;
+	float: right;
+}
+
+
+#detail-product .button{
+
+
+	width: 200px;
+	text-align: center;
+
+}
+
+#detail-product  .description{
+	margin-bottom: 30px;
+}
+
+#detail-product .price{
+	margin-bottom: 10px;
+	font-size: 20px;
+	color: #444;
+
+}
+
+
+
+
+
+
+
+
+
+
+/*PIE DE PAGINA*/
+
+#footer{
+	clear: both;
+	text-align: center;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	color: white;
+	background: #222222;
+	border-top: 4px solid #01b1ea;
+}
+
+table {
+	text-align: center;
+	width: 100%;
+	border:1px solid #5555;
+}
+
+td{
+
+	border-top:1px solid #ccc;
+	padding: 2px;
+
+
+}
+
+.alert_green{
+	color: green;
+}
+.alert_red{
+	color: red;
+}
+
+/*carrito */
+
+.img_carrito{
+
+
+ height: 80px;
+
+}
+
+.button-pedido{
+
+
+	display: block;
+	float: right;
+	width: 100px;
+}
+
+.button-delete{
+
+
+	display: block;
+	float: right;
+	width: 100px;
+	background-color: red;
+}
+.button-table{
+
+
+	width: 50px;
+	margin: 0px auto;
+	background-color: red;
+	text-align: center;
+}
+
+.button-delete-categoria{
+	width: 50px;
+	margin: 0px auto;
+	background-color: red;
+	text-align: center;
+
+}
