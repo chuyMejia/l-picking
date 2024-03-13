@@ -1,5 +1,5 @@
 <?php
-define("base_url", "http://localhost/Masterphp/7.-PROYECTO-PHP-POO/");
-define("controller_default", "productoController");
-define("action_default", "index");
+define("base_url", "http://192.168.1.235/lista-Picking/");
+define("controller_default", "UsuarioController");
+define("action_default", "login");
 

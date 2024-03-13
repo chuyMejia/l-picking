@@ -1,19 +1,36 @@
 <?php
 
-class database {
+class Database {
+    private static $serverName = "192.168.1.36";
+    private static $database = "Consultas_AX";
+    private static $username = "fox";
+    private static $password = "Tr@v3rS";
+    private static $connection;
 
-  public static function conectar(){
+    public static function conectar() {
+        if (!isset(self::$connection)) {
+            $connectionOptions = array(
+                "Database" => self::$database,
+                "Uid" => self::$username,
+                "PWD" => self::$password
+            );
 
-  	$db = new mysqli('localhost','root','','tienda_master');
+            self::$connection = sqlsrv_connect(self::$serverName, $connectionOptions);
 
-  	$db->query(" SET NAMES 'utf8' ");
-  	return $db;
+            if (!self::$connection) {
+                die(print_r(sqlsrv_errors(), true));
+            }
+        }
 
-  }
+        return self::$connection;
+    }
 
-
+    public static function cerrarConexion() {
+        if (isset(self::$connection)) {
+            sqlsrv_close(self::$connection);
+            self::$connection = null;
+        }
+    }
 }
 
 ?>
-
-

@@ -6,19 +6,45 @@ require_once 'controllers/UsuarioController.php';
 require_once 'controllers/NotaController.php';
 
 */
-
+require_once 'controllers/UsuarioController.php';
 session_start();
+
+
+
 
 require_once 'autoload.php';
 require_once 'config/db.php';
 require_once 'config/parameters.php';
 
-require_once 'helpers/utils.php';
+//require_once 'helpers/utils.php';
 require_once 'views/layout/header.php';
-require_once 'views/layout/sidebar.php';
+//require_once 'views/layout/sidebar.php';
+// Incluir la clase Database
 
 
+// Conectar a la base de datos
+// $conn = Database::conectar();
 
+// // Realizar la consulta para verificar la conexión
+// $query = "SELECT 1";
+// $result = sqlsrv_query($conn, $query);
+
+// if ($result === false) {
+//     die(print_r(sqlsrv_errors(), true));
+// }
+
+// // Verificar si se obtuvo un resultado
+// if (sqlsrv_has_rows($result)) {
+//     //echo "La conexión fue exitosa y se obtuvo un resultado.".$result;
+// 	var_dump($result);
+// } else {
+//     //echo "La conexión fue exitosa, pero no se obtuvo ningún resultado.";
+// }
+
+// Cerrar la conexión cuando hayas terminado
+//Database::cerrarConexion();
+
+//die();
 
 $usuario = new UsuarioController;
 
@@ -26,12 +52,11 @@ $usuario = new UsuarioController;
 //$usuario->mostarTodos();
 
 
-function show_error (){
+/*
+var_dump($_GET);
+die();
+*/
 
-	$error = new errorController();
-	$error->index();
-
-}
 
 
 
@@ -50,6 +75,7 @@ else{
 	show_error();
 	exit();
 }
+//echo "-----------------------------";
 
 if ( class_exists($nombrecontrolador)){
 
@@ -76,10 +102,6 @@ if ( class_exists($nombrecontrolador)){
 		show_error();
 		}
 
-
-}else{
-
-	show_error();
 
 }
 

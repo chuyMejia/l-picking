@@ -15,6 +15,12 @@ echo "usuarioController en la Accion INDEX";
 
 public function registro(){
 
+			$show_all = new Usuario();
+			$datos = $show_all->showAll();
+			//var_dump($datos);
+			//die();
+
+
 	require_once 'views/usuario/registro.php';
 	
 }
@@ -30,21 +36,27 @@ public function save(){
 
 		$nombre = isset($_POST['nombre']) ? $_POST['nombre'] : false; 
 		$apellidos = isset($_POST['apellidos']) ? $_POST['apellidos'] : false;
-		$email = isset($_POST['email']) ? $_POST['email'] : false;
+		$user = isset($_POST['user']) ? $_POST['user'] : false;
 		$password = isset($_POST['password']) ? $_POST['password'] : false;
 
 
 
 
-		if ($nombre && $apellidos && $email && $password){
+		if ($nombre && $apellidos && $user && $password){
 
 
 
 		$usuario = new Usuario();
+			
+
 		$usuario->setNombre($_POST['nombre']);
 		$usuario->setApellidos($_POST['apellidos']);
-		$usuario->setEmail($_POST['email']);
+		$usuario->setUser($_POST['user']);
 		$usuario->setPassword($_POST['password']);
+
+		//var_dump($_POST['user']);
+
+		//die();
 
 		$save = $usuario->save();
 
@@ -72,7 +84,34 @@ header('Location:'.base_url.'usuario/registro');
 }
 
 
+
+
+public function show_all(){
+
+		$show_all = new Usuario();
+		$datos = $show_all->showAll();
+		var_dump($datos);
+		die();
+
+
+
+}
+//http://192.168.1.235/lista-Picking/usuario/registro
+//http://192.168.1.235/lista-Picking/usuario/login
+
 public function login(){
+
+	//header('Location:'.base_url.'usuario/login');
+	require_once 'views/usuario/login.php';
+	//header('Location:'.base_url.'usuario/registro');
+}
+
+public function login_(){
+
+
+
+
+	
 
 	if(isset($_POST)){
          
@@ -85,14 +124,16 @@ public function login(){
 		$usuario = new Usuario();
      
 
-        $usuario->setEmail($_POST['email']);
+        $usuario->setUser($_POST['user']);
         $usuario->setPassword($_POST['password']);
 		$identity = $usuario->login();
 
-		//var_dump($identity);
-		//die();
+		
+		//if($identity && is_object($identity)){
+         if($identity){
 
-         if($identity && is_object($identity)){
+			// echo json_encode($identity);
+		    // die();
 
          	$_SESSION['identity'] = $identity;
 

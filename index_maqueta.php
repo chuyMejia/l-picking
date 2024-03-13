@@ -115,7 +115,7 @@
 			</div>
 
 	<!--PIE DE PAGINA-->
-	<footer id = "footer">Desarrollado ppor chuy &copy; <?= date("Y");?></footer>
+	<!-- <footer id = "footer">Desarrollado ppor chuy &copy; <?= date("Y");?></footer> -->
 
 	</div>
 
