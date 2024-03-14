@@ -1,5 +1,7 @@
 <?php
-var_dump($_SESSION);
+//var_dump($_SESSION);
+
+if(isset($_SESSION['identity'])){
 ?>
 
 <!-- Incluye las bibliotecas de DataTables y los botones -->
@@ -7,7 +9,14 @@ var_dump($_SESSION);
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.dataTables.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
-<script src="<?=base_url?>assets/bootstrap-4.0.0/js/bootstrap.min.js"></script>
+<!-- <script src="<?=base_url?>assets/bootstrap-4.0.0/js/bootstrap.min.js"></script> -->
+
+<!-- CSS de Bootstrap 5 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- JS de Bootstrap 5 (requiere Popper.js) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
 <script src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script>
 
@@ -22,7 +31,7 @@ var_dump($_SESSION);
             <form class="form-inline" id="myForm">
                 <div class="form-group mb-2">
                     <label for="staticEmail2" class="sr-only">Email</label>
-                    <input type="text" class="form-control-plaintext" placeholder="RPI..." id="nPicking">
+                    <input type="text" class="form-control-plaintext" placeholder="RPI...." id="nPicking">
                 </div>
             </form>
 
@@ -32,6 +41,10 @@ var_dump($_SESSION);
                     <input style="width:15%;border: 1px solid #e12323;" id="input_cant" type="number"></input>
                     <input style="display:none;" type="submit"></input>
                 </form>
+            </div>
+            <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+            <label class="form-check-label" style="color:gray" for="flexSwitchCheckDefault">LLeva Catalogo</label>
             </div>
         </div>
     </div>
@@ -60,7 +73,9 @@ var_dump($_SESSION);
     <br><br>
     <br><br>
     <br><br>
-   
+   <?php }else{
+    echo "<h2>IDENTIFICATE</h2>";
+   }?>
     <script>
         $(document).ready(function () {
 //Otra no especificada en el catalogo
@@ -91,7 +106,7 @@ var conteo_lineas_t;
 
     $('#div_content').html('');
 
-    fetch('http://192.168.1.235/lista-Picking/picking/check_&TVR=1&RPI='+nPicking_data)
+    fetch('<?=base_url?>picking/check_&TVR=1&RPI='+nPicking_data)
     .then(response => response.json())
     .then(data => {
         // Verificar si la respuesta no está vacía
@@ -424,7 +439,8 @@ console.log(jsonData);
 
 $.ajax({
 type: 'POST',
-url: "http://192.168.1.235/lista-Picking/index.php?controller=picking&action=saveData&TVR=1&RPI=" + rpi_,
+//url: "http://192.168.1.235/lista-Picking/index.php?controller=picking&action=saveData&TVR=1&RPI=" + rpi_,
+url: "<?=base_url?>index.php?controller=picking&action=saveData&TVR=1&RPI=" + rpi_,
 //data: 'data=' + encodeURIComponent(jsonData), // Enviar el JSON como parte de los datos
 data: { jsonData: jsonData },
 success: function (response) {
@@ -503,4 +519,46 @@ var validacion = function(auto = 0){
        // alert('AQI VA LA VALIDACION');
 
 }
+
+$('#flexSwitchCheckDefault').change(function() {
+        // Verificar si el checkbox está desactivado
+        var rpi_ = $('#nPicking').val();
+
+        if(rpi_ == ''){
+            alert('RPI VACIO');
+
+          
+
+
+           
+
+        }else{
+
+            if (!$(this).is(':checked')) {
+            console.log('El checkbox está desactivado.');
+            // Aquí puedes hacer lo que necesites cuando el checkbox esté desactivado
+        } else {
+            console.log('El checkbox está activado.');
+            $.ajax({
+                type: 'GET',
+                //url: "http://192.168.1.235/lista-Picking/index.php?controller=picking&action=saveData&TVR=1&RPI=" + rpi_,
+                url: "<?=base_url?>picking/catalogo&TVR=1&RPI=" + rpi_,
+                //data: 'data=' + encodeURIComponent(jsonData), // Enviar el JSON como parte de los datos
+                
+                success: function (response) {
+                    console.log(response);
+                    $('.form-check').html('<p>Dato Guardado</p>');
+                },
+                error: function (error) {
+                    console.error('Error en la solicitud AJAX', error);
+                }
+                });
+        }
+
+
+        }
+        
+    });
+
+
     </script>

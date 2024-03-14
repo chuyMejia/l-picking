@@ -355,6 +355,16 @@ public function logout(){
 
 }
 
+public function catalogo(){
+
+
+    $picking = new Picking();
+    $picking->setId($_GET['RPI']);
+    $save = $picking->saveCatalogo();
+    die();
+
+}
+
 
 
 

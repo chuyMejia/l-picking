@@ -460,6 +460,38 @@ public function buscar_detail(){
         // Retorna los resultados
         return $rows;
     }
+
+
+
+    public function saveCatalogo(){
+
+        $cat_ = $this->id; 
+
+
+        try {
+            // Inserción en la tabla check_picking
+            $sql = "INSERT INTO check_catalogo (rpi_picking) VALUES (?);";
+
+                 
+            // Prepara la consulta
+            $stmt = sqlsrv_prepare($this->db, $sql, array(&$cat_));
+    
+            // Ejecutar la consulta
+            if (sqlsrv_execute($stmt)) {
+                // Verificar el resultado
+                echo json_encode(['message' => 'Datos insertados en la tabla check_picking']);
+                
+            } else {
+                // Manejar cualquier error en la ejecución
+                echo json_encode(['error' => 'Error al insertar datos en la tabla check_picking: ' . print_r(sqlsrv_errors(), true)]);
+            }
+           // die();
+        } catch (Exception $e) {
+            // Manejar cualquier excepción
+            echo json_encode(['error' => 'Error al insertar datos en la tabla check_picking: ' . $e->getMessage()]);
+        }
+
+    }
     
     public function save(){
         $docuNum = $this->id; // RPI
