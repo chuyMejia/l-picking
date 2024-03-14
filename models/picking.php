@@ -9,11 +9,16 @@ class Picking {
     private $del;
     private $al;
     private $choice;
+    private $user;
     private $db;
 
     public function __construct() {
         $this->db = Database::conectar();
     }
+
+    function getUser() {
+		return $this->user;
+	}
 
     function getId() {
 		return $this->id;
@@ -46,6 +51,11 @@ class Picking {
     function getChoice() {
 		return $this->choice;
 	}
+
+    function setUser($user) {
+		$this->user = $user;
+	}
+
 
     
 	function setChoice($choice) {
@@ -431,7 +441,7 @@ public function buscar_detail(){
         // Ejecuta la consulta usando la conexión existente
         $result = sqlsrv_query($this->db, $sql);
         
-    
+    //chuy 
         // Verifica si la consulta fue exitosa
         if ($result === false) {
             // Manejar el error si la consulta falla
@@ -462,8 +472,7 @@ public function buscar_detail(){
     
         // Aquí debes establecer la variable $usuario con el usuario correspondiente
         // Puedes obtenerlo de la sesión, por ejemplo.
-        $usuario = "usuario_ejemplo";
-    
+        $usuario = $this->user;
         try {
             // Inserción en la tabla check_picking
             $sql = "INSERT INTO check_picking (rpi_picking, item_id, cantidad, fecha_registro, usuario,is_Correct) 

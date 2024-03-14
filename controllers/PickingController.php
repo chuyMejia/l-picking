@@ -32,6 +32,8 @@ public function index3(){
 
 public function check_(){
 
+    
+
 
 
         $revision = new picking();
@@ -203,6 +205,11 @@ public function save(){
 		$usuario->setApellidos($_POST['apellidos']);
 		$usuario->setEmail($_POST['email']);
 		$usuario->setPassword($_POST['password']);
+        $usuario->setUser($_SESSION['identity']['nombre_usuario']);
+
+       // echo $_SESSION['identity']['nombre_usuario'];
+
+        //die();
 
 		$save = $usuario->save();
 
@@ -314,6 +321,9 @@ public function saveData() {
         $picking->setId($RPI); // Aquí deberías ajustar cómo obtienes el ID
         $picking->setItem($item['Clave']);
         $picking->setCantidad($item['Cant']);
+        $picking->setUser($_SESSION['identity']['nombre_usuario']);
+
+       
         //isCorrect
         $picking->setIsCorrect($item['isCorrect']);
       

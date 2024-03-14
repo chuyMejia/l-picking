@@ -13,7 +13,7 @@ if(isset($identity)){
   $_SESSION['login'] = true;
 
 }
-var_dump($_SESSION);
+//var_dump($identity);
 //echo $identity;
 //die();
 

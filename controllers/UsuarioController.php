@@ -90,7 +90,7 @@ public function show_all(){
 
 		$show_all = new Usuario();
 		$datos = $show_all->showAll();
-		var_dump($datos);
+		//var_dump($datos);
 		die();
 
 
@@ -104,6 +104,14 @@ public function login(){
 	//header('Location:'.base_url.'usuario/login');
 	require_once 'views/usuario/login.php';
 	//header('Location:'.base_url.'usuario/registro');
+}
+
+public function salir (){
+
+	session_destroy();
+
+	header('Location: '.base_url);
+
 }
 
 public function login_(){

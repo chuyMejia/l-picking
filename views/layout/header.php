@@ -1,8 +1,11 @@
 
-	<?php if(isset($_GET['TVR'])){
+	<?php 
+	
+	//var_dump($_SESSION['identity']);
+	if(isset($_GET['TVR'])){
 
 	}else{
-
+		//var_dump($_SESSION['identity']);
 	 ?>
 	 <!DOCTYPE html>
 <html lang="es">
@@ -19,21 +22,20 @@
 <script src="https://code.jquery.com/jquery-3.6.4.slim.min.js"></script>
 	<script src="<?=base_url?>assets/bootstrap-4.0.0/dist/js/jquery-3.6.0.min.js"></script>
     <script src="<?=base_url?>assets/bootstrap-4.0.0/dist/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
+	  <!-- Incluir Popper.js -->
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <!-- Incluir jQuery (necesario para Bootstrap) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- Incluir Bootstrap JS -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 	<!-- Materialize CSS CDN -->
 <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
 
 <script>
 
-document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.dropdown-trigger');
-    var instances = M.Dropdown.init(elems, options);
-  });
-
-  // Or with jQuery
-
-  $('.dropdown-trigger').dropdown();
 
 
 </script>
@@ -41,36 +43,42 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 	<div id = "container">
-
+	<?php if(isset($_SESSION['identity'])){  ?>
 	<header id = "header">
 		<div id = "logo">
 			<img src="<?=base_url?>assets/image/caja2.png"/>
 			
 			<div style="display: flex;justify-content: space-between;">
-			<a href="#">
+			<a href="#" id="logo_a">
 				l-Picking
 			</a>
 
 			<!-- <a>Salir</a> -->
-	</div>
-			
 		</div>
 
+		<?php if(isset($_SESSION['identity'])){  ?>
+		<div style="display: flex;justify-content: end;">
+		<div class="dropdown">
+			<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<?= $_SESSION['identity']['nombre_usuario']?>
+			</button>
+			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+				<a class="dropdown-item" href="#">Detalle</a>
+				<a class="dropdown-item" href="#">About</a>
+				<a class="dropdown-item" href="<?=base_url?>usuario/salir">Salir</a>
+			</div>
+			</div>
+		</div>
+
+		<?php } ?>
+	</div>
+  			
 	</header>
 
-	<a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Drop Me!</a>
 
-<!-- Dropdown Structure -->
-<ul id='dropdown1' class='dropdown-content'>
-  <li><a href="#!">one</a></li>
-  <li><a href="#!">two</a></li>
-  <li class="divider" tabindex="-1"></li>
-  <li><a href="#!">three</a></li>
-  <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
-  <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
-</ul>
   
 	<!--MENU-->
+	
 		<nav id = "menu">
 			<ul>
 				<li>
@@ -90,13 +98,27 @@ document.addEventListener('DOMContentLoaded', function() {
           				REPORTE
   					</a>
 				</li>
+				<?php if(isset($_SESSION['identity']) && $_SESSION['identity']['tipo_usuario'] == 'ADMIN' ){  ?>
+				<li>
+					<a href="<?=base_url?>usuario/registro">
+          				REGISTRO
+  					</a>
+				</li>
+
+				<li>
+					<a href="<?=base_url?>picking/chart">
+          				CHARTS
+  					</a>
+				</li>
 				
-				
+				<?php }  ?>
              
                							
 			</ul>
 			
 		</nav>
+
+		<?php } ?>
 
 			<div id = "content">
 
