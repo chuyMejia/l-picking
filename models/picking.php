@@ -470,11 +470,21 @@ public function buscar_detail(){
 
         try {
             // Inserción en la tabla check_picking
-            $sql = "INSERT INTO check_catalogo (rpi_picking) VALUES (?);";
+           // $sql = "INSERT INTO check_catalogo (rpi_picking) VALUES (?);";
 
+            //$sql = "INSERT INTO check_catalogo (rpi_picking, CLIENTE, FECHA) '".$cat_."', (SELECT TOP 1 T0.CUSTOMER FROM MicrosoftDynamicsAX.dbo.WMSPICKINGROUTE T0 WHERE T0.PICKINGROUTEID = '".$cat_."'), GETDATE();";
+            $sql = "INSERT INTO check_catalogo (rpi_picking, CLIENTE, FECHA) 
+            SELECT ?, 
+                   (SELECT TOP 1 T0.CUSTOMER 
+                    FROM MicrosoftDynamicsAX.dbo.WMSPICKINGROUTE T0 
+                    WHERE T0.PICKINGROUTEID = ?), 
+                   GETDATE();";
+    
+    // Prepara la consulta
+    $stmt = sqlsrv_prepare($this->db, $sql, array(&$cat_, &$cat_));
                  
             // Prepara la consulta
-            $stmt = sqlsrv_prepare($this->db, $sql, array(&$cat_));
+            //$stmt = sqlsrv_prepare($this->db, $sql, array(&$cat_));
     
             // Ejecutar la consulta
             if (sqlsrv_execute($stmt)) {
@@ -531,6 +541,45 @@ public function buscar_detail(){
     }
     
     
+    public function rpi_data() {
+        $parametro = $this->id;
+
+        // Nombre del procedimiento almacenado
+        $procedureName = "SPS_LPICKING";
+
+        // Parámetros del procedimiento almacenado
+        $params = array(
+            array($parametro, SQLSRV_PARAM_IN)  // Parámetro de entrada
+        );
+
+        // Ejecutar el procedimiento almacenado
+        $sql = "EXEC $procedureName @Parametro=?";
+        $stmt = sqlsrv_prepare($this->db, $sql, $params);
+        //$stmt = sqlsrv_prepare($this->db, $sql, array(&$docuNum, &$item_, &$cantidad_, &$fechaActual, &$usuario,&$iscorrect_));
+    
+        if ($stmt === false) {
+            die(print_r(sqlsrv_errors(), true));
+        }
+
+        if (sqlsrv_execute($stmt) === false) {
+            die(print_r(sqlsrv_errors(), true));
+        }
+
+        // Recorrer los resultados (si los hay)
+        $resultados = array();
+        while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
+            $resultados[] = $row;
+        }
+
+        // Cerrar el statement
+        sqlsrv_free_stmt($stmt);
+
+        //echo json_encode($resultados);
+        //die();
+
+        return $resultados;
+
+    }
     
 
 

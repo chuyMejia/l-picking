@@ -153,11 +153,16 @@ var principal = function(){
 
     $.ajax({
         type: "GET",
-        url: "http://10.1.1.25:3700/L-Picking/" + nPicking_data,
+      //  url: "http://10.1.1.25:3700/L-Picking/" + nPicking_data,
+      //url: "http://localhost/lista-Picking/picking/new_data&TVR=1&RPI="+nPicking_data,
+      url: "<?=base_url?>picking/new_data&TVR=1&RPI="+nPicking_data,
+      //url: "http://localhost/lista-Picking/picking/new_data&TVR=1&RPI=RPI1462043",
         success: function (response) {
-            console.log(response.data[0]['CAT']);
+                console.log(response[0])
+
+            console.log(response[0]['CAT']);
             //alert(response.data);
-            if(response.data[0]['CAT'] !== 'si'){
+            if(response[0]['CAT'] !== 'si'){
 
                 $('.alert-warning').show('slow');
 
@@ -185,18 +190,18 @@ var principal = function(){
 
                // alert(response.data.length);
 
-               conteo_lineas = response.data.length;
+               conteo_lineas = response.length;
 
                ///alert(conteo_lineas);
 
-            for (var i = 0; i < response.data.length; i++) {
+            for (var i = 0; i < response.length; i++) {
                 html += `<tr>
                 <td>${i + 1}</td>
-                <td class="record">${response.data[i]['Clave']}</td>
-                <td>${response.data[i]['UNITID']}</td>
-                <td>${response.data[i]['Descrip']}</td>
-                <td><input readonly id="id-${response.data[i]['Clave']}" cant="${response.data[i]['Cant']}" onChange="data_(this,'${response.data[i]['Clave']}');" type="number" name="data" required=""></td>
-                <td><span id="${response.data[i]['Clave']}" cant="${response.data[i]['Cant']}"></span></td>
+                <td class="record">${response[i]['Clave']}</td>
+                <td>${response[i]['UNITID']}</td>
+                <td>${response[i]['Descrip']}</td>
+                <td><input readonly id="id-${response[i]['Clave']}" cant="${response[i]['Cant']}" onChange="data_(this,'${response[i]['Clave']}');" type="number" name="data" required=""></td>
+                <td><span id="${response[i]['Clave']}" cant="${response[i]['Cant']}"></span></td>
                 </tr>`;
             }
 
@@ -570,5 +575,7 @@ $('#flexSwitchCheckDefault').change(function() {
         
     });
 
-
+//442 674094801
+//442 674 0948
+//442 403 4723
     </script>

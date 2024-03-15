@@ -366,6 +366,19 @@ public function catalogo(){
 }
 
 
+public function new_data() {
+    $picking = new Picking();
+    $picking->setId($_GET['RPI']);
+    $data = $picking->rpi_data(); 
+    header('Content-Type: application/json');
+    echo json_encode($data);
+
+   die();
+
+
+   /// require_once 'views/picking/index2.php';
+}
+
 
 
 
