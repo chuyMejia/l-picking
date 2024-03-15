@@ -21,7 +21,13 @@ if(isset($_SESSION['identity'])){
 <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script>
 
 
-
+<div class="alert alert-warning" style="display:none;" role="alert">
+  Cliente sin Mini-Catalogo <strong>Favor de incluir uno </strong>
+  <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+            <label class="form-check-label" style="color:gray" for="flexSwitchCheckDefault">Se incluyo  Mini-Catalogo</label>
+  </div>
+</div>
 
 <div id="cont_master" style="display: flex;justify-content: space-between;">
 
@@ -42,12 +48,11 @@ if(isset($_SESSION['identity'])){
                     <input style="display:none;" type="submit"></input>
                 </form>
             </div>
-            <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-            <label class="form-check-label" style="color:gray" for="flexSwitchCheckDefault">LLeva Catalogo</label>
-            </div>
+            
         </div>
     </div>
+<div style="background:red;">
+</div>
     <div id ="loader_" style ="width: 20%;height: auto; display: none;">
     <img style ="max-width: 100%;" src="<?=base_url?>assets/image/loader.gif"><img>
     </div>
@@ -150,7 +155,13 @@ var principal = function(){
         type: "GET",
         url: "http://10.1.1.25:3700/L-Picking/" + nPicking_data,
         success: function (response) {
-            console.log(response.data);
+            console.log(response.data[0]['CAT']);
+            //alert(response.data);
+            if(response.data[0]['CAT'] !== 'si'){
+
+                $('.alert-warning').show('slow');
+
+            }
 
             if ($.fn.DataTable.isDataTable('#modalTable')) {
                 $('#modalTable').DataTable().destroy();
@@ -524,16 +535,7 @@ $('#flexSwitchCheckDefault').change(function() {
         // Verificar si el checkbox está desactivado
         var rpi_ = $('#nPicking').val();
 
-        if(rpi_ == ''){
-            alert('RPI VACIO');
-
-          
-
-
-           
-
-        }else{
-
+       
             if (!$(this).is(':checked')) {
             console.log('El checkbox está desactivado.');
             // Aquí puedes hacer lo que necesites cuando el checkbox esté desactivado
@@ -547,7 +549,15 @@ $('#flexSwitchCheckDefault').change(function() {
                 
                 success: function (response) {
                     console.log(response);
-                    $('.form-check').html('<p>Dato Guardado</p>');
+                    $('.form-check').html('<p style ="color:#870000;">Dato Guardado Gracias :)</p>');
+
+                    setTimeout(function () {
+                        // Recargar la página actual
+                        $('.alert-warning').hide('slow');
+                        //location.reload();
+                    }, 1500);
+
+                    
                 },
                 error: function (error) {
                     console.error('Error en la solicitud AJAX', error);
@@ -556,7 +566,7 @@ $('#flexSwitchCheckDefault').change(function() {
         }
 
 
-        }
+        
         
     });
 
