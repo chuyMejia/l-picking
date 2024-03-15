@@ -101,7 +101,7 @@
 				<?php if(isset($_SESSION['identity']) && $_SESSION['identity']['tipo_usuario'] == 'ADMIN' ){  ?>
 				<li>
 					<a href="<?=base_url?>usuario/registro">
-          				REGISTRO
+          				REGISTRO USUARIOS
   					</a>
 				</li>
 
