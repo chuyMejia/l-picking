@@ -503,42 +503,37 @@ public function buscar_detail(){
 
     }
     
-    public function save(){
-        $docuNum = $this->id; // RPI
-        $item_ = $this->item;
-        $cantidad_ = $this->cantidad;
-        $iscorrect_ = $this->isCorrect;
-    
-        // Obtener la fecha actual
-        $fechaActual = date("Y-m-d H:i:s");
-    
-        // Aquí debes establecer la variable $usuario con el usuario correspondiente
-        // Puedes obtenerlo de la sesión, por ejemplo.
-        $usuario = $this->user;
-        try {
-            // Inserción en la tabla check_picking
-            $sql = "INSERT INTO check_picking (rpi_picking, item_id, cantidad, fecha_registro, usuario,is_Correct) 
-                    VALUES (?, ?, ?, ?, ?,?)";
+   public function save(){
+    $docuNum = $this->id; // RPI
+    $item_ = $this->item;
+    $cantidad_ = $this->cantidad;
+    $iscorrect_ = $this->isCorrect;
 
-                 
-            // Prepara la consulta
-            $stmt = sqlsrv_prepare($this->db, $sql, array(&$docuNum, &$item_, &$cantidad_, &$fechaActual, &$usuario,&$iscorrect_));
-    
-            // Ejecutar la consulta
-            if (sqlsrv_execute($stmt)) {
-                // Verificar el resultado
-                echo json_encode(['message' => 'Datos insertados en la tabla check_picking']);
-                
-            } else {
-                // Manejar cualquier error en la ejecución
-                echo json_encode(['error' => 'Error al insertar datos en la tabla check_picking: ' . print_r(sqlsrv_errors(), true)]);
-            }
-           // die();
-        } catch (Exception $e) {
-            // Manejar cualquier excepción
-            echo json_encode(['error' => 'Error al insertar datos en la tabla check_picking: ' . $e->getMessage()]);
+    try {
+        // Inserción en la tabla check_picking
+        $sql = "INSERT INTO check_picking (rpi_picking, item_id, cantidad, fecha_registro, usuario, is_Correct) 
+                VALUES (?, ?, ?, GETDATE(), ?, ?)";
+
+             
+        // Prepara la consulta
+        $stmt = sqlsrv_prepare($this->db, $sql, array(&$docuNum, &$item_, &$cantidad_, &$usuario,&$iscorrect_));
+
+        // Ejecutar la consulta
+        if (sqlsrv_execute($stmt)) {
+            // Verificar el resultado
+            echo json_encode(['message' => 'Datos insertados en la tabla check_picking']);
+            
+        } else {
+            // Manejar cualquier error en la ejecución
+            echo json_encode(['error' => 'Error al insertar datos en la tabla check_picking: ' . print_r(sqlsrv_errors(), true)]);
         }
+       // die();
+    } catch (Exception $e) {
+        // Manejar cualquier excepción
+        echo json_encode(['error' => 'Error al insertar datos en la tabla check_picking: ' . $e->getMessage()]);
     }
+}
+
     
     
     public function rpi_data() {
