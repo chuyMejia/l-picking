@@ -508,6 +508,7 @@ public function buscar_detail(){
     $item_ = $this->item;
     $cantidad_ = $this->cantidad;
     $iscorrect_ = $this->isCorrect;
+    $usuario = $this->user;
 
     try {
         // Inserción en la tabla check_picking
@@ -544,9 +545,9 @@ public function buscar_detail(){
 
         // Parámetros del procedimiento almacenado
         $params = array(
-            array($parametro, SQLSRV_PARAM_IN)  // Parámetro de entrada
+            array(&$parametro, SQLSRV_PARAM_IN)  // Parámetro de entrada
         );
-
+        
         // Ejecutar el procedimiento almacenado
         $sql = "EXEC $procedureName @Parametro=?";
         $stmt = sqlsrv_prepare($this->db, $sql, $params);

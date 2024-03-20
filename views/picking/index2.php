@@ -80,7 +80,10 @@ if(isset($_SESSION['identity'])){
     <br><br>
    <?php }else{
     echo "<h2>IDENTIFICATE</h2>";
-   }?>
+  ?>
+<a href="<?=base_url?>" >click aqui</a>
+
+  <?php }?>
     <script>
         $(document).ready(function () {
 //Otra no especificada en el catalogo
