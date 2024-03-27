@@ -95,7 +95,6 @@ a{
 	display: block;
 	color: white;
 	text-decoration: none;
-	
 	padding-left:12px;
 	padding-right: 12px; 
 	transition: all 300ms;
@@ -107,6 +106,10 @@ a{
 
 #menu a:hover{
 	background:#01b1ea;
+}
+
+#reporte{
+	background: rgb(0, 0, 0);
 }
 
 #menu li{
@@ -460,4 +463,19 @@ td{
 	background-color: red;
 	text-align: center;
 
+}
+
+
+
+.card_form{
+
+	display: flex;
+    justify-content: center;
+    padding-top: 10px;
+    padding-bottom: 17px;
+
+}
+
+.active_0{
+	background:#fcff9e;
 }

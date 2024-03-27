@@ -57,15 +57,7 @@ public function chart(){
 
     $chart2 = new picking();
     $exec_semana =  $chart2->getchart_Semana();
-
-
-   
-    
-
     require_once 'views/picking/chart.php';
-
-
-	
 }
 
 public function detail(){

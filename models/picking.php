@@ -434,31 +434,30 @@ public function buscar_detail(){
                     )
                     GROUP BY rpi_picking
                 ) AS Subquery)AS Semana
-                order by 5;        
-    ";
+                order by 5;";
     
     
-        // Ejecuta la consulta usando la conexión existente
-        $result = sqlsrv_query($this->db, $sql);
-        
-    //chuy 
-        // Verifica si la consulta fue exitosa
-        if ($result === false) {
-            // Manejar el error si la consulta falla
-            throw new Exception("Error en la consulta: " . print_r(sqlsrv_errors(), true));
-        }
+                $result = sqlsrv_query($this->db, $sql);
+
+                //echo $sql;
     
-        // Almacena los resultados en un array
-        $rows = array();
-        while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
-            $rows[] = $row;
-        }
-    
-        // Cierra la conexión
-        sqlsrv_close($this->db);
-    
-        // Retorna los resultados
-        return $rows;
+                // Verifica si la consulta fue exitosa
+                if ($result === false) {
+                    // Manejar el error si la consulta falla
+                    throw new Exception("Error en la consulta: " . print_r(sqlsrv_errors(), true));
+                }
+            
+                // Almacena los resultados en un array
+                $rows = array();
+                while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
+                    $rows[] = $row;
+                }
+            
+                // Cierra la conexión
+                sqlsrv_close($this->db);
+            
+                // Retorna los resultados
+                return $rows;
     }
 
 
@@ -542,6 +541,50 @@ public function buscar_detail(){
 
         // Nombre del procedimiento almacenado
         $procedureName = "SPS_LPICKING";
+
+        // Parámetros del procedimiento almacenado
+        $params = array(
+            array(&$parametro, SQLSRV_PARAM_IN)  // Parámetro de entrada
+        );
+        
+        // Ejecutar el procedimiento almacenado
+        $sql = "EXEC $procedureName @Parametro=?";
+        $stmt = sqlsrv_prepare($this->db, $sql, $params);
+        //$stmt = sqlsrv_prepare($this->db, $sql, array(&$docuNum, &$item_, &$cantidad_, &$fechaActual, &$usuario,&$iscorrect_));
+    
+        if ($stmt === false) {
+            die(print_r(sqlsrv_errors(), true));
+        }
+
+        if (sqlsrv_execute($stmt) === false) {
+            die(print_r(sqlsrv_errors(), true));
+        }
+
+        // Recorrer los resultados (si los hay)
+        $resultados = array();
+        while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
+            $resultados[] = $row;
+        }
+
+        // Cerrar el statement
+        sqlsrv_free_stmt($stmt);
+
+        //echo json_encode($resultados);
+        //die();
+
+        return $resultados;
+
+    }
+
+
+    
+    public function chart_data() {
+        //$parametro = $this->id;
+
+        $parametro = '1';
+
+        // Nombre del procedimiento almacenado
+        $procedureName = "sps_chart_picking";
 
         // Parámetros del procedimiento almacenado
         $params = array(

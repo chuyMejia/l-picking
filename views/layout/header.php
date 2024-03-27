@@ -93,11 +93,11 @@
   					</a>
 				</li>	
 
-				<li>
+				<!-- <li>
 					<a href="<?=base_url?>picking/reporte">
           				REPORTE
   					</a>
-				</li>
+				</li> -->
 				<?php if(isset($_SESSION['identity']) && $_SESSION['identity']['tipo_usuario'] == 'ADMIN' ){  ?>
 				<li>
 					<a href="<?=base_url?>usuario/registro">
@@ -106,9 +106,25 @@
 				</li>
 
 				<li>
-					<a href="<?=base_url?>picking/chart">
+					<a href="<?=base_url?>reportes/chart">
           				CHARTS
   					</a>
+				</li>
+
+				<li>
+					<!-- <a href="<?=base_url?>reportes/index">
+          				REPORTES
+  					</a> -->
+					  <div class="dropdown">
+						<button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							REPORTES
+						</button>
+						<div class="dropdown-menu" style="background: #37446e;" aria-labelledby="dropdownMenuButton">
+							<a class="dropdown-item" id = "reporte" href="<?=base_url?>reportes/Lpicking">Picking</a>
+							<a class="dropdown-item" id = "reporte" href="<?=base_url?>reportes/mini_catalogo">Mini Catalogo</a>
+							<a class="dropdown-item" id = "reporte" href="<?=base_url?>picking/reporte">Todos-Registros</a>
+						</div>
+						</div>
 				</li>
 				
 				<?php }  ?>

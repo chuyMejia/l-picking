@@ -22,6 +22,9 @@ $semana = array(
 );
 
 // Recorrer el array $exec_semana y actualizar el array $semana
+
+
+
 foreach ($exec_semana as $dia) {
   $nombreDia = strtolower($dia['DAY_']);
 
@@ -96,56 +99,56 @@ foreach ($exec_semana as $dia) {
 
 <div style = "display: flex;justify-content: center;padding-top: 3%;">
 
- <div><canvas id="myChart" width="400" height="400"></canvas> </div>
-  <!-- <div style="max-width: 20%;">
-    <p>Pickings Completos:<strong><?=$completos?></strong></p>
-    <p>Pickings Completos:<strong><?=$incompletos?></strong></p>
-    <canvas id="myChart2"></canvas>
-  </div> -->
+  <div><canvas id="myChart" width="400" height="400"></canvas> </div>
+    <!-- <div style="max-width: 20%;">
+      <p>Pickings Completos:<strong><?=$completos?></strong></p>
+      <p>Pickings Completos:<strong><?=$incompletos?></strong></p>
+      <canvas id="myChart2"></canvas>
+    </div> -->
 
-  <div style="width: 20%; margin: auto;">
-  <h4>REGISTROS</h4>
-    <p style="color:gray">Pickings Completos:<strong><?=$completos?></strong></p>
-    <p style="color:gray">Pickings Completos:<strong><?=$incompletos?></strong></p>
-    <canvas id="graficaPastel"></canvas>
-  </div>
+    <div style="width: 20%; margin: auto;">
+    <h4>REGISTROS</h4>
+      <p style="color:gray">Pickings Completos:<strong><?=$completos?></strong></p>
+      <p style="color:gray">Pickings Completos:<strong><?=$incompletos?></strong></p>
+      <canvas id="graficaPastel"></canvas>
+    </div>
 
-  <div style="">
+    <div style="">
 
-  <form action="<?= base_url ?>picking/detail" method="post">
-      <label>De:</label>
-      <input name="de_" type="date"></input>
+    <form action="<?= base_url ?>picking/detail" method="post">
+        <label>De:</label>
+        <input name="de_" type="date"></input>
 
-      <label>Hasta:</label>
-      <input name="hasta_" type="date"></input>
+        <label>Hasta:</label>
+        <input name="hasta_" type="date"></input>
 
-      <div class="input-field col s12">
-        <select name="opcion" style="">
-          <option value="" disabled selected>Selecciona una opción</option>
-          <option value="1">Completos</option>
-          <option value="0">Incompletos</option>
-        
-        </select>
-        <label>Selecciona</label>
-      </div>
+        <div class="input-field col s12">
+          <select name="opcion" style="">
+            <option value="" disabled selected>Selecciona una opción</option>
+            <option value="1">Completos</option>
+            <option value="0">Incompletos</option>
+          
+          </select>
+          <label>Selecciona</label>
+        </div>
 
-      <button type="submit" class="btn">Enviar</button>
-    </form>
+        <button type="submit" class="btn">Enviar</button>
+      </form>
 
-    <!-- <canvas id="myChart"></canvas> -->
-  </div>
- </div>
-
-<div>
-<div class="row">
-    <div class="col s12 m5">
-      <div class="card-panel teal">
-        <span class="white-text">I am a very simple card. I am good at containing small bits of information.
-        I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
-        </span>
-      </div>
+      <!-- <canvas id="myChart"></canvas> -->
     </div>
   </div>
+
+  <div>
+  <div class="row">
+      <div class="col s12 m5">
+        <div class="card-panel teal">
+          <span class="white-text">I am a very simple card. I am good at containing small bits of information.
+          I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
+          </span>
+        </div>
+      </div>
+    </div>
 
   <div>
 
