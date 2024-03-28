@@ -1,7 +1,10 @@
 
 
 <!-- <h2>Detalle - <?=$_GET['RPI']?></h2> -->
-<span class="badge badge-success" id ="detail_">Show Detalle</span>
+<div style="display: flex;
+    justify-content: center;
+    margin-bottom: 1%;
+    margin-top: 1%;"><span class="badge badge-success" id ="detail_">Show Detalle</span></div>
 <div class="card border-success mb-3" style="display:none;" style="max-width: 18rem;">
   <div class="card-header" style="color:#28a745;display: flex;justify-content: space-between;"> <span  class="badge badge-success detail_2"><?=$_GET['RPI']?></span> <span  class="badge badge-danger detail_2" >X</span></div>
   <div class="card-body text-success">
@@ -99,14 +102,18 @@ $('#detail_').click(function(){
 
     console.log(this);
     $(this).hide();
-    $('.border-success').show('slow');
+    //$('.border-success').show('slow');
+    $('.border-success').slideDown();
+    
+
     
 });
 
 $('.detail_2').click(function(){
 
     console.log(this);
-    $('.border-success').hide('slow');
+    //$('.border-success').hide('slow');
+    $('.border-success').slideUp(); 
     $('#detail_').show('slow');
 
 });

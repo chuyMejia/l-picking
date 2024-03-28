@@ -479,3 +479,22 @@ td{
 .active_0{
 	background:#fcff9e;
 }
+
+
+.detail_2{
+	cursor:pointer;
+}
+
+#detail_{
+
+	cursor: pointer;
+	
+}
+
+#detail_:hover{
+	box-shadow: 2px 2px 2px 2px #959595;		
+		background: #01b1ea;
+}
+
+
+
