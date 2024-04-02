@@ -67,6 +67,7 @@ unset($_SESSION['register']);
 							<th>Nombre de usuario</th>
 							<!-- <th>Password</th> -->
 							<th>Tipo de usuario</th>
+							<th>Action</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -78,6 +79,7 @@ unset($_SESSION['register']);
 								<td><?php echo $row['nombre_usuario']; ?></td>
 								<!-- <td><?php //echo $row['password']; ?></td> -->
 								<td><?php echo $row['tipo_usuario']; ?></td>
+								<td><a id ="edit_" onclick="data_('<?=$row['id']?>')" class="waves-effect waves-light btn modal-trigger" style="color:white;" href="#modal1">Edit</a></td>
 							</tr>
 						<?php endforeach; ?>
 					</tbody>
@@ -90,3 +92,50 @@ unset($_SESSION['register']);
 
 		
 </div>
+
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>EDITAR </h4>
+      <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+  </div>
+
+
+  <script>
+		document.addEventListener('DOMContentLoaded', function() {
+			var elems = document.querySelectorAll('.modal');
+			var instances = M.Modal.init(elems, options);
+		});
+
+		// Or with jQuery
+
+		$(document).ready(function(){
+			$('.modal').modal();
+		});
+
+		var data_ = function(iden){
+			//alert(iden);
+
+			$.ajax({
+				type: 'GET',
+				//url: "http://192.168.1.235/lista-Picking/index.php?controller=picking&action=saveData&TVR=1&RPI=" + rpi_,
+				url: "<?=base_url?>index.php?controller=usuario&action=ShowOne&TVR=1&user=" + iden,
+				//data: 'data=' + encodeURIComponent(jsonData), // Enviar el JSON como parte de los datos
+				//data: { jsonData: jsonData },
+				success: function (response) {
+					console.log(response);
+
+				},
+				error: function (error) {
+					console.error('Error en la solicitud AJAX', error);
+				}
+				});
+		}
+
+
+  </script>

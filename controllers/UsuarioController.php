@@ -197,6 +197,20 @@ public function logout(){
 }
 
 
+public function ShowOne(){
+
+
+
+	$user = new Usuario();
+	$user->setId($_GET['user']);
+	$resultado = $user->showOne();
+	echo json_encode($resultado);
+	die();
+
+
+}
+
+
 
 
 

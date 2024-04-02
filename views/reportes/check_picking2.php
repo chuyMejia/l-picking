@@ -23,7 +23,7 @@
     </style>
 </head>
 <body>
-    <h2>Reporte de Picking - <?=$result[0]['ESTATUS']?></h2>
+    <h2>Reporte de Picking </h2>
     <div style="padding: 2%;">
     <table id="tabla_reporte" class="display">
         <thead>

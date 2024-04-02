@@ -210,6 +210,41 @@ public function showAll() {
 
 
 
+public function showOne() {
+	// Consulta SQL
+
+	$id_ = $this->id;
+
+
+	
+
+
+
+	$sql = "SELECT  * FROM usuarios_picking WHERE id = $id_";
+
+	// Ejecuta la consulta usando la conexión existente
+	$result = sqlsrv_query($this->db, $sql);
+
+	// Verifica si la consulta fue exitosa
+	if ($result === false) {
+		// Manejar el error si la consulta falla
+		throw new Exception("Error en la consulta: " . print_r(sqlsrv_errors(), true));
+	}
+
+	// Almacena los resultados en un array
+	$rows = array();
+	while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
+		$rows[] = $row;
+	}
+
+	// Cierra la conexión
+	sqlsrv_close($this->db);
+
+	// Retorna los resultados
+	return $rows;
+}
+
+
 
 
 

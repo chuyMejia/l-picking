@@ -29,7 +29,7 @@ if(isset($_SESSION['identity'])){
   </div>
 </div>
 
-<div id="cont_master" style="display: flex;justify-content: space-between;">
+<div id="cont_master" style="display: flex;justify-content: space-between;margin-bottom: 16%;">
 
     <div class="card border-info mb-3" style="border-color: #ffffff !important;max-width: 18rem;max-height: 10rem; margin-left: 10px;margin-top: 10px;box-shadow: 1px 1px 6px 2px rgba(143,143,143,0.89);">
         <div class="card-header" style="background: #313131;color: white;">PICKING</div>
@@ -47,12 +47,33 @@ if(isset($_SESSION['identity'])){
                     <input style="width:15%;border: 1px solid #e12323;" id="input_cant" type="number"></input>
                     <input style="display:none;" type="submit"></input>
                 </form>
+
+
+              
+                
+           
+
+
+
+                
             </div>
+
+            
+           
+
+           
             
         </div>
+
+        <div style="margin-top:10px;" class="shark-1" id = "im">
+                
+        </div>
+
+        
+             
     </div>
-<div style="background:red;">
-</div>
+    <div style="background:red;">
+    </div>
     <div id ="loader_" style ="width: 20%;height: auto; display: none;">
     <img style ="max-width: 100%;" src="<?=base_url?>assets/image/loader.gif"><img>
     </div>
@@ -74,10 +95,16 @@ if(isset($_SESSION['identity'])){
         </div>
 
     </div>
+
+    <br>
+ 
+
     <br><br>
     <br><br>
     <br><br>
     <br><br>
+
+    
    <?php }else{
     echo "<h2>IDENTIFICATE</h2>";
   ?>
@@ -86,6 +113,11 @@ if(isset($_SESSION['identity'])){
   <?php }?>
     <script>
         $(document).ready(function () {
+
+
+         
+
+
 //Otra no especificada en el catalogo
             $('#nPicking').focus();
 
@@ -200,7 +232,7 @@ var principal = function(){
             for (var i = 0; i < response.length; i++) {
                 html += `<tr>
                 <td>${i + 1}</td>
-                <td class="record">${response[i]['Clave']}</td>
+                <td class="record mostar_img">${response[i]['Clave']}</td>
                 <td>${response[i]['UNITID']}</td>
                 <td>${response[i]['Descrip']}</td>
                 <td><input readonly id="id-${response[i]['Clave']}" cant="${response[i]['Cant']}" onChange="data_(this,'${response[i]['Clave']}');" type="number" name="data" required=""></td>
@@ -214,6 +246,16 @@ var principal = function(){
 
             $('#div_content').append(html);
             $('#nPicking').prop('readonly', true);
+
+               $('.mostar_img').mouseover(function(){
+               // console.log($(this).html());
+                imgs = $(this).html();
+                var url_ = `https://www.travers.com.mx/media/catalog/product/agility/img/${imgs}_1.jpg`;
+                console.log(url_);
+
+                $('#im').html(`<img style="width:100%;margin-top: 10%;" src="${url_}">`);
+            });
+
 
             $('#loader_').hide();
             $('#input_e').val('').focus();
@@ -308,6 +350,8 @@ var principal = function(){
             $('#formulario').on('submit', function (event) {
                 event.preventDefault();
 
+                console.log('chuy chuy  url');
+
                 
 
                 var sku = $('#input_e').val();
@@ -316,6 +360,13 @@ var principal = function(){
                 var valor_actual = input.val();
 
                    // alert(isNaN(input));
+
+
+                imgs = $(this).html();
+                var url_ = `https://www.travers.com.mx/media/catalog/product/agility/img/${sku}_1.jpg`;
+                //console.log(url_);
+
+                $('#im').html(`<img style="width:100%;margin-top: 10%;" src="${url_}">`);
 
              
                 //alert(sku);
@@ -392,7 +443,7 @@ var principal = function(){
             var miJSON = [];
             if(validacion() == false){
                 var autoriza = prompt("Por favor, ingrese clave de autorización:");
-                if(autoriza == 1 || autoriza == '1'){
+                if(autoriza == 1146 || autoriza == '1146'){
                     alert('se autorizo con clave');
                 }else{
                     alert('No se pude validar la clave');   
@@ -581,4 +632,9 @@ $('#flexSwitchCheckDefault').change(function() {
 //442 674094801
 //442 674 0948
 //442 403 4723
+
+
+
+
     </script>
+</div>

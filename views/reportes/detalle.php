@@ -65,7 +65,7 @@ if (!empty($detalle)) {
     
     // Itera sobre cada fila de datos en $detalle
     foreach ($detalle as $row) {
-        echo '<tr class="active_'.$row['is_Correct'].'">';
+        echo '<tr zimage ="'.$row['item_id'].'" class="active_'.$row['is_Correct'].'">';
         echo '<td>' . $row['id'] . '</td>';
         echo '<td>' . $row['item_id'] . '</td>';
         echo '<td>' . $row['cantidad'] . '</td>';
@@ -88,9 +88,16 @@ if (!empty($detalle)) {
 </div>
 
 
+<div id = "im" style="display:flex;justify-content:center;">
+    
+</div>
+
+
 
    <?php
 } else {
+    //4225350
+    //4224787
     echo 'No se encontraron datos.';
 }?>
 
@@ -98,10 +105,38 @@ if (!empty($detalle)) {
 
 <script>
 
+$('.active_0').mouseover(function(){
+
+
+    var url_ = 'https://www.travers.com.mx/media/catalog/product/agility/img/'+$(this).attr('zimage')+'_1.jpg';
+    console.log(url_);
+
+    $('#im').html('');
+
+    $('#im').html(`<img id="imagen" style="max-width: 50%;
+    border: 2px solid #b6b6b6;
+    border-radius: 0.3rem;display:block;" src="${url_}">`);
+    
+
+
+
+
+
+
+  
+  $('#im').show('slow');
+})
+
+$('.active_0').mouseout(function(){
+
+$('#im').hide('slow');
+})
+
+
 $('#detail_').click(function(){
 
     console.log(this);
-    $(this).hide();
+    $(this).hide('slow');
     //$('.border-success').show('slow');
     $('.border-success').slideDown();
     

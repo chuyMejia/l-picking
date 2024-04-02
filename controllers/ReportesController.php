@@ -105,7 +105,17 @@ public function Lpicking2(){
 
 
       $reporte =  new reporte();
-      $reporte->setId('1');//te da la opcion segn el procedure
+      if($opcion == '4' || $opcion == 4){
+        $reporte->setId('4');
+      }else{
+        $reporte->setId('1');
+      }
+
+     
+
+
+      
+     // $reporte->setId('1');//te da la opcion segn el procedure
       $reporte->setDe($de);
       $reporte->setHasta($hasta);
       $reporte->setOpcion($opcion);

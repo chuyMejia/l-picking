@@ -17,9 +17,9 @@
         <label>Hasta:</label>
         <input name="hasta" type="date"></input>
         
-        <label>Tipos de registros</label>
-        <select name="opcion">
-          <option value="" disabled selected>Selecciona una opción</option>
+      
+        <select style="display:none;" name="opcion">
+          
           <option value="1">Completos</option>
           <option value="0">Incompletos</option>
         </select>

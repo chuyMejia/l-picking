@@ -20,8 +20,10 @@
         <label>Tipos de registros</label>
         <select name="opcion">
           <option value="" disabled selected>Selecciona una opción</option>
+          <option value="4">Ambos</option>
           <option value="1">Completos</option>
           <option value="0">Incompletos</option>
+          
         </select>
 
         <button type="submit"  class="btn">Enviar</button>
