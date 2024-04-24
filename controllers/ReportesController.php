@@ -60,7 +60,7 @@ public function chart(){
     //die();
 
     $mini_cat = new reporte();
-    $mini_cat->setId('4');
+    $pagonani_cat->setId('4');
     $exec_catalog = $mini_cat->chart_data();
 
 
@@ -106,7 +106,9 @@ public function Lpicking2(){
 
       $reporte =  new reporte();
       if($opcion == '4' || $opcion == 4){
-        $reporte->setId('4');
+
+        $reporte->setId('7');
+
       }else{
         $reporte->setId('1');
       }
@@ -119,12 +121,11 @@ public function Lpicking2(){
       $reporte->setDe($de);
       $reporte->setHasta($hasta);
       $reporte->setOpcion($opcion);
-
       $result = $reporte->report_fecha();
 
 
-    //   var_dump($result[0]['ESTATUS']);
-    //   die();
+      //  var_dump($result);
+      //  die();
 
       
 
@@ -205,8 +206,70 @@ public function detalle(){
 
 }
 
+public function miPage(){
+
+    require_once 'views/reportes/miPagina.php';
+
+}
 
 
+public function chuy(){
+
+    $chuy =  new reporte();
+    $chuy->setId('7');//parametro fijo
+    // $chuy->setRpi('1076'); //recibir de peticion post
+    // $chuy->setDe('2024-04-09');///recibir de peticion post
+
+
+    $chuy->setRpi($_POST['user']); //recibir de peticion post
+    $chuy->setDe($_POST['fecha']);///recibir de peticion post
+
+
+
+ 
+
+    $resultado = $chuy->chart_data_detail();
+
+      //  echo json_encode($resultado[0]['COMPLETOS']); 
+
+      echo json_encode('|'.str_replace("\n", '', $resultado[0]['inCOMPLETOS']).'|'.str_replace("\n", '', $resultado[0]['completos']).'|'); 
+      die();
+
+    //echo json_decode($resultado) ;
+    //die();
+    //require_once 'views/reportes/miPagina.php';
+
+}
+
+
+
+public function lineaVenta(){
+
+  require_once 'views/reportes/lineasVenta.php';
+
+}
+
+
+
+
+public function lineaVenta2(){
+
+  $reporte_ = new reporte();
+  $reporte_->setId('4');//reporte de linas de ventaq 
+  $reporte_->setDe($_POST['de']);
+  $reporte_-> setHasta($_POST['hasta']);
+  $resultado = $reporte_->report_fecha();
+  //var_dump($resultado);
+  
+  
+
+
+
+
+  require_once 'views/reportes/lineasVenta2.php';
+
+}
+    
     
 
 

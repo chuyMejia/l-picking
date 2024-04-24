@@ -4,21 +4,44 @@
 if(isset($_SESSION['identity'])){
 ?>
 
-<!-- Incluye las bibliotecas de DataTables y los botones -->
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.dataTables.min.css">
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
-<!-- <script src="<?=base_url?>assets/bootstrap-4.0.0/js/bootstrap.min.js"></script> -->
 
+
+<link href="<?=base_url?>assets/bootstrap-4.0.0/assets/css/docs.min.css" rel="stylesheet">
+<script src="<?=base_url?>assets/bootstrap-4.0.0/dist/js/bootstrap.min.js"></script>
+
+<!-- Incluye las bibliotecas de DataTables y los botones -->
+<!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.dataTables.min.css"> -->
+
+<link href="<?=base_url?>assets/dependencies/css/buttons.dataTables.min.css" rel="stylesheet">
+<link href="<?=base_url?>assets/dependencies/css/jquery.dataTables.css" rel="stylesheet">
+
+
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script> -->
+
+<script src="<?=base_url?>assets/dependencies/js/jquery.dataTables.js"></script>
+<script src="<?=base_url?>assets/dependencies/js/jquery-3.6.0.min.js"></script>
+
+<!-- <script src="<?=base_url?>assets/bootstrap-4.0.0/js/bootstrap.min.js"></script> -->
 <!-- CSS de Bootstrap 5 -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+<link href="<?=base_url?>assets/dependencies/css/bootstrap.min.css" rel="stylesheet">
+<link href="<?=base_url?>assets/dependencies/css/datatables.css" rel="stylesheet">
+<link href="<?=base_url?>assets/dependencies/css/datatables.min.css" rel="stylesheet">
 
 <!-- JS de Bootstrap 5 (requiere Popper.js) -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script> -->
+
+<script src="<?=base_url?>assets/dependencies/js/bootstrap.bundle.min.js"></script>
+<script src="<?=base_url?>assets/dependencies/js/dataTables.buttons.min.js"></script>
+<script src="<?=base_url?>assets/dependencies/js/buttons.html5.min.js"></script>
+
+<script src="<?=base_url?>assets/dependencies/js/datatables.js"></script>
+<script src="<?=base_url?>assets/dependencies/js/datatables.min.js"></script>
+
 
 
 <div class="alert alert-warning" style="display:none;" role="alert">
@@ -90,7 +113,10 @@ if(isset($_SESSION['identity'])){
 
         <div>
             <div>
-                <div id="div_content"></div>
+            <div class="progress" >
+                <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 0%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><span id="percent" style="font-size: initial;">0%</span></div>
+        </div> 
+            <div id="div_content"></div>
             </div>
         </div>
 
@@ -98,7 +124,7 @@ if(isset($_SESSION['identity'])){
 
     <br>
  
-
+<!--$('.progress-bar').css({'width': '100%'})-->
     <br><br>
     <br><br>
     <br><br>
@@ -114,6 +140,11 @@ if(isset($_SESSION['identity'])){
     <script>
         $(document).ready(function () {
 
+
+            
+
+
+            var contador = 0;
 
          
 
@@ -227,6 +258,9 @@ var principal = function(){
 
                conteo_lineas = response.length;
 
+
+               //alert(conteo_lineas);
+
                ///alert(conteo_lineas);
 
             for (var i = 0; i < response.length; i++) {
@@ -239,6 +273,8 @@ var principal = function(){
                 <td><span id="${response[i]['Clave']}" cant="${response[i]['Cant']}"></span></td>
                 </tr>`;
             }
+
+          
 
             html += `</tbody></table>
             <div style="display: flex;justify-content: center;margin-top: 4px;margin-bottom: 4px;">
@@ -261,13 +297,13 @@ var principal = function(){
             $('#input_e').val('').focus();
 
             // Inicializar DataTable con botones
-            $('#modalTable').DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    'csv',
-                    'print'
-                ]
-            });
+            // $('#modalTable').DataTable({
+            //     dom: 'Bfrtip',
+            //     buttons: [    
+            //         'csv',
+            //         'print'
+            //     ]
+            // });
         },
         error: function (error) {
             console.error("Error en la petición:", error);
@@ -324,12 +360,35 @@ var principal = function(){
                 }
                 //alert(cantValue+'cantValue'+inputval+'inputval');
 
+                ///aqui chuy
+
+                //var porcentaje   = conteo_lineas;
+
+                var individual = 100 / parseInt(conteo_lineas);
+
+              
+
+         
+
+
+
+
+
+
                 if (cantValue == inputval) {
                     //  alert('SIIIIIIIIIIIIII IGUALES'+id);
                     $(e).css({ 'border': '2px solid green' });
                     $('#' + id).html(`<svg style="color: green;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
                         </svg>`);
+
+                         contador = contador +individual;
+
+                         console.log('va en ------->'+contador);
+
+                         $('.progress-bar').css({'width': contador+'%'});
+                         $('#percent').html(contador+'%');
+                         ///chuyomenoso
 
                         $(e).parent().parent().css({'background':'White'});
 
@@ -352,6 +411,8 @@ var principal = function(){
 
                 console.log('chuy chuy  url');
 
+               // alert(conteo_lineas);
+
                 
 
                 var sku = $('#input_e').val();
@@ -359,7 +420,7 @@ var principal = function(){
                 var cantValue = $(input).attr('cant');
                 var valor_actual = input.val();
 
-                   // alert(isNaN(input));
+                   // alert(isNaN(input)); chuyomenoso
 
 
                 imgs = $(this).html();

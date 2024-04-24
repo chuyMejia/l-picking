@@ -297,6 +297,55 @@ public function login(){
 
 
 
+public function update_img(){
+
+
+
+    $userid = $this->id;
+	$fileName = $this->imagen;
+
+    // Preparar la consulta SQL
+    $sql = "UPDATE usuarios_picking set imagen = '$fileName' where id = 9";
+    
+    // Preparar los parámetros para la consulta
+    $params = array($userid);
+
+    // Ejecutar la consulta
+    $image = sqlsrv_query($this->db, $sql, $params);
+
+    // Verificar si la consulta fue exitosa
+    if ($image === false) {
+        // Manejar el error si la consulta falla
+        echo "Error en la consulta: " . print_r(sqlsrv_errors(), true);
+        return false;
+    }
+
+    // Obtener el resultado de la consulta
+    $row = sqlsrv_fetch_array($image, SQLSRV_FETCH_ASSOC);
+
+
+	if ($row !== false) {
+        // Verificar la contraseña
+     
+            $result = $row;
+     
+    }
+    
+    // Cerrar la conexión
+    sqlsrv_close($this->db);
+
+	
+    return true;
+
+	die();
+}
+
+
+
+
+
+
+
 
 
 }

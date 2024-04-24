@@ -19,10 +19,18 @@ if(isset($identity)){
 
 
 ?>
-
+<!-- 
 <link href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
+ -->
+
+ <link href="<?=base_url?>assets/dependencies/css/materialize.min.css" rel="stylesheet">
+<script src="<?=base_url?>assets/dependencies/js/materialize.min.js"></script>
+
+
 <!------ Include the above in your HEAD tag ---------->
 
 <?php  if(!isset($_SESSION['identity'])){    ?>
@@ -33,7 +41,7 @@ if(isset($identity)){
    <main>
     <center>
      <div class="container">
-        <div  class="z-depth-3 y-depth-3 x-depth-3 grey green-text lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px; margin-top: 100px; solid #EEE;">
+        <div  class="z-depth-3 y-depth-3 x-depth-3 grey green-text lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px; margin-top: 0%; solid #EEE;">
         <div class="section" style ="    max-width: 50%;   border-radius: 1.3rem;">
     
         <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-box-seam" viewBox="0 0 16 16">
@@ -73,20 +81,43 @@ if(isset($identity)){
        </div>
       </center>
       </main>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script> -->
+
+    <script src="<?=base_url?>assets/bootstrap-4.0.0/dist/js/bootstrap.min.js"></script>
+    <script src="<?=base_url?>assets/bootstrap-4.0.0/dist/js/bootstrap.min.js"></script>
 
 	</div>
 </div>
-<?php }else{ 
+<?php } elseif ($_SESSION['identity']["tipo_usuario"] == 'REPORT') {  ?>
+   
+  <script>
+    // Redireccionar a otra página web
+    window.location.href = '<?=base_url?>reportes/lineaVenta';
+</script>
+
+<?php
+} 
+
+else{ 
 sleep(2);
 
-echo '<h1>login Correcto</h1>';
+echo '<h1>LOG IN</h1>';
 
 //unset($_SESSION['identity']);
 header('Location:'.base_url."picking/index2");
 
-}?>
+var_dump($_SESSION['identity']);
+?>
+
+<script>
+    // Redireccionar a otra página web
+    window.location.href = '<?=base_url?>picking/index2';
+</script>
+
+
+
+<?php }?>
 
 
 

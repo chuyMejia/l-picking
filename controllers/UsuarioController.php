@@ -211,8 +211,70 @@ public function ShowOne(){
 }
 
 
+public function upload_image(){
 
 
+	
+	//var_dump($_FILES);
+
+	//die();
+
+	//recibir dato del id del usuario
+	//por get 
+
+	// var_dump($_GET['user']);
+	// die();
+
+   //die();
+
+	
+	$file = $_FILES['imagen'];
+	$filename = $file['name'];
+	$mimetype = $file['type'];
+
+	
+//C36321   MARIELA TELLIZGON    
+
+	if($mimetype == "image/jpeg" || $mimetype == "image/jpeg" || $mimetype == "image/png" || $mimetype == "image/jpeg" || $mimetype == "image/gif"){//comprambamos el tipo de imagen a subir
+
+		if(!is_dir('uploads/images')){//comprobamos si existe un directorio 
+			mkdir('uploads/images',0777,true);
+
+		}  
+       $user = new usuario();
+
+	   $user->setId($_GET['userid']);
+	   $user->setImagen($filename);
+	   
+
+	   $result = $user->update_img();
+
+	//    var_dump($result);
+	//    die();
+
+	   //funcion para hacer update sobre la foto
+
+	   
+
+	  ///sube la imagen
+	    $_SESSION['identity']['imagen'] = $filename;
+		move_uploaded_file($file['tmp_name'],'uploads/images/'.$filename);
+		
+			echo "upload correcto";
+			die();
+
+
+	}
+}
+
+//////4236872    2204  
+////
+///
+//
+//
+/*4236964  /-//-//-/  4236906  */
+
+//c96052
 
 }
 ?>

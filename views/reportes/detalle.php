@@ -5,15 +5,15 @@
     justify-content: center;
     margin-bottom: 1%;
     margin-top: 1%;"><span class="badge badge-success" id ="detail_">Show Detalle</span></div>
-<div class="card border-success mb-3" style="display:none;" style="max-width: 18rem;">
-  <div class="card-header" style="color:#28a745;display: flex;justify-content: space-between;"> <span  class="badge badge-success detail_2"><?=$_GET['RPI']?></span> <span  class="badge badge-danger detail_2" >X</span></div>
-  <div class="card-body text-success">
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item"><strong>Registro:</strong> <?=$detalle_user[0]['usuario']?>-<?=$detalle_user[0]['NOMBRE']?></li>
-        <li class="list-group-item"><strong>Hora:</strong> <?=$detalle_user[0]['fecha_registro']->format('Y-m-d H:i:s')?></li>
-        <li class="list-group-item"><strong>Pickeador:</strong> <?=$detalle_user[0]['codEmp']?> - <?=$detalle_user[0]['nombreComp']?></li>
-    </ul>
-  </div>
+    <div class="card border-success mb-3" style="display:none;" style="max-width: 18rem;">
+    <div class="card-header" style="color:#28a745;display: flex;justify-content: space-between;"> <span  class="badge badge-success detail_2"><?=$_GET['RPI']?></span> <span  class="badge badge-danger detail_2" >X</span></div>
+    <div class="card-body text-success">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><strong>Registro:</strong> <?=$detalle_user[0]['usuario']?>-<?=$detalle_user[0]['NOMBRE']?></li>
+            <li class="list-group-item"><strong>Hora:</strong> <?=$detalle_user[0]['fecha_registro']->format('Y-m-d H:i:s')?></li>
+            <li class="list-group-item"><strong>Pickeador:</strong> <?=$detalle_user[0]['codEmp']?> - <?=$detalle_user[0]['nombreComp']?></li>
+        </ul>
+    </div>
 </div>
 
 
@@ -129,7 +129,7 @@ $('.active_0').mouseover(function(){
 
 $('.active_0').mouseout(function(){
 
-$('#im').hide('slow');
+//$('#im').hide('slow');
 })
 
 

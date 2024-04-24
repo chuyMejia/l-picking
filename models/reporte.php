@@ -119,6 +119,10 @@ class reporte {
 
     
     public function chart_data_detail() {
+
+
+
+
         $parametro = $this->id;
 
         
@@ -126,13 +130,27 @@ class reporte {
 
         //$parametro = '2';
 
+            $fecha;
+        if(isset($this->de)){
+
+            $fecha = $this->de;
+
+        }else{
+
+            $fecha = '1';
+
+        }
+
+
+        
+
 
         $procedureName = "sps_chart_picking";
 
 
           // Ejecutar el procedimiento almacenado
           $sql = "EXEC $procedureName  @Parametro = '$parametro',
-          @Rpi = '$RPI'";
+          @Rpi = '$RPI',@fecha = '$fecha' ";
 
         //   echo $sql;
         //   die();
@@ -172,21 +190,26 @@ class reporte {
 
     }
     
-
+//fq1496102
     /////craer nuva funcio para el controller y crear nuevo procedimiento que acvepre opcion fecha de hasta y la opcion 
 
 
     public function report_fecha(){
 
 
+
+
         $parametro = $this->id;
         $de = $this->de;
         $hasta = $this->hasta;
-        $opcion =$this->opcion;
+
+       
+        $opcion = !empty($this->opcion) ? $this->opcion : 5;
+
 
 
         //echo $parametro;
-        //die();
+        //die();  fq1496837
 
         //$parametro = '2';
 
@@ -248,6 +271,18 @@ class reporte {
 
 
     }
+
+
+
+    
+    public function mi_page(){
+
+
+        return 'desde modelo';
+
+        die();
+    }
+
 
    
 

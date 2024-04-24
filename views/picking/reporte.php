@@ -1,15 +1,36 @@
 <!-- Incluir las bibliotecas y estilos de DataTables -->
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
-<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script> -->
 
+    <link href="https://cdn.datatables.net/v/bs4/jszip-3.10.1/dt-2.0.3/b-3.0.1/b-colvis-3.0.1/b-html5-3.0.1/b-print-3.0.1/datatables.min.css" rel="stylesheet">
+ 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/v/bs4/jszip-3.10.1/dt-2.0.3/b-3.0.1/b-colvis-3.0.1/b-html5-3.0.1/b-print-3.0.1/datatables.min.js"></script>
+<!-- 
 <script>
 	// Inicializar DataTables
 	        $(document).ready(function() {
 	            $('#miTabla').DataTable();
 	        });
 	
-</script>
+</script> -->
+
+
+<script>
+      $(document).ready(function() {
+    $('#miTabla').DataTable({
+        dom: 'Bfrtip', // Agrega el contenedor para los botones
+        buttons: [
+           // 'copy', // Botón de copiar
+            'excelHtml5', // Botón de exportar a Excel
+           // 'pdfHtml5' // Botón de exportar a PDF
+        ]
+    });
+});
+
+    </script>
 
 
 <section style ="display: block;padding: 2%;">
