@@ -60,24 +60,10 @@ public function chart(){
     //die();
 
     $mini_cat = new reporte();
-    $pagonani_cat->setId('4');
+    $mini_cat->setId('4');
     $exec_catalog = $mini_cat->chart_data();
 
 
-   // var_dump($exec_catalog[0]['LUNES']);
-    
-
-   
-   //require_once 'views/picking/chart.php';
-
-
-//fq1474892  2223
-  
-    
-
-
-   
-    
 
    require_once 'views/reportes/chart.php';
 

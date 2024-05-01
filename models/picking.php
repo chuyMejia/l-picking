@@ -156,14 +156,9 @@ public function buscar_detail(){
 
     public function exist() {
 
-     
-
-        $docuNum = $this->id;
-        
+        $docuNum = $this->id; 
         // $docuNum = 'RPI1462043';
-        $sql = "	SELECT TOP 1 rpi_picking FROM check_picking WHERE RPI_PICKING = '".$docuNum."'";
-
-       
+        $sql = "SELECT TOP 1 rpi_picking FROM check_picking WHERE RPI_PICKING = '".$docuNum."'";    
        // $sql = 'SELECT  * FROM check_picking;';
     
         // Ejecuta la consulta usando la conexión existente
@@ -189,6 +184,8 @@ public function buscar_detail(){
         
 
     }
+
+    
 
  
     public function check() {
@@ -533,7 +530,10 @@ public function buscar_detail(){
         echo json_encode(['error' => 'Error al insertar datos en la tabla check_picking: ' . $e->getMessage()]);
     }
 }
+/*select top 10 expeditionStatus from WMSPickingRoute where pickingRouteID = 'RPI1483891'
 
+'20'
+ */
     
     
     public function rpi_data() {
@@ -571,6 +571,8 @@ public function buscar_detail(){
 
         //echo json_encode($resultados);
         //die();
+
+     
 
         return $resultados;
 

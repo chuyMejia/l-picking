@@ -89,6 +89,20 @@
 						INICIO
 					</a>
 				</li>
+				<?php if(isset($_SESSION['identity']) && $_SESSION['identity']['tipo_usuario'] == 'USER' ){  ?>
+                  <li>
+					<a href="<?=base_url?>picking/index2">
+          				REGISTRO
+  					</a>
+				</li>	
+				<li>
+					<a href="<?=base_url?>factura/index">
+          				REG. FACTURA MTY
+  					</a>
+				</li>	
+
+				<?php } ?>
+
 				<?php if(isset($_SESSION['identity']) && $_SESSION['identity']['tipo_usuario'] == 'ADMIN' ){  ?>
                   <li>
 					<a href="<?=base_url?>picking/index2">

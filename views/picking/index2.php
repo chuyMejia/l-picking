@@ -54,8 +54,12 @@ if(isset($_SESSION['identity'])){
 
 <div id="cont_master" style="display: flex;justify-content: space-between;margin-bottom: 16%;">
 
-    <div class="card border-info mb-3" style="border-color: #ffffff !important;max-width: 18rem;max-height: 10rem; margin-left: 10px;margin-top: 10px;box-shadow: 1px 1px 6px 2px rgba(143,143,143,0.89);">
-        <div class="card-header" style="background: #313131;color: white;">PICKING</div>
+    <div class="card border-info mb-3" style="border-color: #ffffff !important;max-width: 18rem; margin-left: 10px;margin-top: 10px;box-shadow: 1px 1px 6px 2px rgba(143,143,143,0.89);">
+    <div class="alert alert-danger" style="display:none;" id ="pick_cancel" role="alert">
+ PICKING CANCELADO FAVOR DE RETIRAR ;]
+</div>
+    
+    <div class="card-header" style="background: #313131;color: white;">PICKING</div>
         <div class="card-body text-info">
             <form class="form-inline" id="myForm">
                 <div class="form-group mb-2">
@@ -187,6 +191,8 @@ var conteo_lineas_t;
             // Continuar con la lógica principal
             //ejecutarLogicaPrincipal();
 
+
+
             $('#loader_').hide();
             alert('YA CUENTA CON REGISTRO');
             location.reload();
@@ -196,6 +202,8 @@ var conteo_lineas_t;
             console.log('La respuesta de la solicitud fetch está vacía.');
             // Puedes realizar acciones adicionales en caso de una respuesta vacía
             //principal();
+
+            //revisar si el picking esta cancelado
         
         principal();
             //principal();
@@ -224,7 +232,25 @@ var principal = function(){
       url: "<?=base_url?>picking/new_data&TVR=1&RPI="+nPicking_data,
       //url: "http://localhost/lista-Picking/picking/new_data&TVR=1&RPI=RPI1462043",
         success: function (response) {
-                console.log(response[0])
+                console.log(response[0]);
+
+                if(response[0]['Resultado'] == 'canceled'){
+
+                   // alert('PICKING CANCELADO');
+                    $('#pick_cancel').show();
+                    setTimeout(function () {
+      
+                    location.reload();
+                }, 3500);
+
+                    
+                    //location.reload(); aqui quedo chuy 
+                    //RPI1485750  picking cancelado pruebas 
+                    return false;
+
+                }
+
+              //  alert('ddddddd');
 
             console.log(response[0]['CAT']);
             //alert(response.data);
