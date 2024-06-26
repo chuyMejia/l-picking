@@ -22,6 +22,46 @@ public function index2(){
 }
 
 
+public function existencias(){
+
+
+
+	require_once 'views/picking/existencias.php';
+	
+}
+
+
+public function existencias2(){
+
+    
+/*
+    var_dump($_REQUEST['item']);
+        die();
+
+   */
+
+
+    ////consulta
+
+
+    $existencias = new picking();
+    $existencias->setItem($_REQUEST['item']);
+    $result = $existencias->existencias();
+
+    
+
+    //echo json_encode($result);
+
+  
+
+   
+
+
+	require_once 'views/picking/existencias2.php';
+	
+}
+
+
 public function index3(){
 
 

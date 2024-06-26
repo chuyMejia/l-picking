@@ -125,15 +125,12 @@ $id_user = $_SESSION['identity']['id'];
             } else if(response['existe'] ==="no es 29 o 30"){
 
                 $('#alert_warning').show('slow');
-
-                
+               
                         $('#cross').html('404-NO ES CROSSDOCK');
                         $('#factura_').html('favor de retirar');
                         $('#nombre_').html('404 NOT FOUND');
                         $('#cliente_').html('404');
                         $('.jumbotron').show('slow');
-
-
             }else{
                 if(response[0]['DLVMODE'] == 29 || response[0]['DLVMODE'] == '29'){
                     $(".jumbotron").css({
@@ -171,8 +168,6 @@ $id_user = $_SESSION['identity']['id'];
               /*
               $('tbody').prepend('<tr><td>5</td><td>dddddd</td><td>sssssssss</td><td>ddgd</td></tr>')
 completar maña agreagr cada vez que se inserte un registro
-
-
 y al cargar la pagina cargue todos lo registros index factura 
               */
             }

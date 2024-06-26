@@ -245,6 +245,71 @@ public function buscar_detail(){
     }
 
 
+
+    public function existencias() {
+
+
+        $item_ = $this->item;
+
+     
+        // Consulta SQL chuychuy
+
+        /* SUMA DE DIPONIBLES 
+        $sql = "SELECT 
+            ITEMID, SUM(AVAILPHYSICAL) AS FISICA_DISPONIBLE
+        FROM 
+            MicrosoftDynamicsAX.dbo.INVENTSUM 
+        WHERE 
+            ITEMID = '$item_'
+        GROUP BY 
+            ITEMID;";
+
+            */
+
+            $sql = "SELECT s1.itemid,s2.InventSiteId AS EMPRESA ,s2.InventLocationId AS ALMACEN,S2.wMSLocationId AS LOCALIDAD,s1.PHYSICALINVENT AS INVENTARIO_FISICO,s1.RESERVPHYSICAL AS FISICA_RESERVADA,s1.AVAILPHYSICAL AS FISICA_DISPONIBLE,AVAILORDERED AS TOTAL_DISPONIBLE
+        FROM 
+            MicrosoftDynamicsAX.dbo.INVENTSUM s1 
+			left join MicrosoftDynamicsAX.dbo.InventDim s2
+			on s1.inventdimid  =s2.inventdimid
+			and s1.dataareaid = 'trv'
+			and s1.closed = 0
+        WHERE 
+            ITEMID = '$item_'
+			and s2.DATAAREAID = 'trv'	
+			order by 3,4 DESC;";
+
+
+                    //echo $sql;
+                 //   echo 'fffffffffff';
+                  //  die();
+
+
+                    
+    
+        // Ejecuta la consulta usando la conexión existente
+        $result = sqlsrv_query($this->db, $sql);
+
+
+        // Verifica si la consulta fue exitosa
+        if ($result === false) {
+            // Manejar el error si la consulta falla
+            throw new Exception("Error en la consulta: " . print_r(sqlsrv_errors(), true));
+        }
+    
+        // Almacena los resultados en un array
+        $rows = array();
+        while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
+            $rows[] = $row;
+        }
+    
+        // Cierra la conexión
+        sqlsrv_close($this->db);
+    
+        // Retorna los resultados
+        return $rows;
+    }
+
+
     public function getchart() {
         // Consulta SQL
         $sql = "
